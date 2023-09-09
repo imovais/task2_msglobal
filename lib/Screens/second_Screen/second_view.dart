@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 class SecondView extends StatelessWidget {
@@ -11,7 +13,7 @@ class SecondView extends StatelessWidget {
           backgroundColor: Colors.blue,
           foregroundColor: Colors.white,
           centerTitle: true,
-          title: const Text('Pickup Date'),
+          //title: const Text('Pickup Date'),
           elevation: 0,
           shadowColor: Colors.blue,
           leading: const Icon(Icons.arrow_back),
@@ -24,13 +26,17 @@ class SecondView extends StatelessWidget {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-          child: SizedBox(
-            width: size.width,
-            height: size.height,
-            child: Stack(children: [
-              SingleChildScrollView(
+        body: SizedBox(
+          width: size.width,
+          height: size.height,
+          child: Stack(children: [
+            Padding(
+              padding: EdgeInsets.only(
+                top: AppBar().preferredSize.height + size.width / 4,
+                left: 15,
+                right: 15,
+              ),
+              child: SingleChildScrollView(
                 child: Column(
                   children: [
                     Chatbubble(size: size),
@@ -43,18 +49,98 @@ class SecondView extends StatelessWidget {
                   ],
                 ),
               ),
-              Padding(
-                padding: const EdgeInsets.only(top: 20),
-                child: CustomPaint(
-                  size: Size(
-                      double.infinity,
-                      size.width /
-                          2), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
-                  painter: RPSCustomPainter(),
+            ),
+            SizedBox(
+              height: AppBar().preferredSize.height + size.width,
+            ),
+            Stack(alignment: Alignment.topLeft, children: [
+              CustomPaint(
+                size: Size(
+                    double.infinity,
+                    size.width /
+                        2), //You can Replace [WIDTH] with your desired width for Custom Paint and height will be calculated automatically
+                painter: RPSCustomPainter(),
+              ),
+              Container(
+                margin: const EdgeInsets.only(left: 50),
+                width: size.width / 1.5,
+                height: size.width,
+                child: const Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    CircleAvatar(
+                      backgroundColor: Colors.white,
+                      child: Icon(Icons.message),
+                    ),
+                    Text(
+                      'Hi There!',
+                      style: TextStyle(
+                          fontSize: 22,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600),
+                    ),
+                    Text(
+                      'Welcome to Online service. how can we help you todays?',
+                      style: TextStyle(color: Colors.white),
+                    )
+                  ],
+                ),
+              )
+            ]),
+            Positioned(
+              bottom: 0,
+              right: 0,
+              width: size.width,
+              child: Container(
+                margin: EdgeInsets.only(bottom: 10),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 1),
+                width: size.width,
+                height: AppBar().preferredSize.height,
+                //color: Colors.grey.shade200,
+                child: Row(
+                  children: [
+                    Expanded(
+                      flex: 4,
+                      child: Card(
+                        elevation: 10,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(5),
+                          child: Container(
+                            color: Colors.white,
+                            child: const Center(
+                              child: Padding(
+                                padding: EdgeInsets.only(bottom: 5, left: 10),
+                                child: TextField(
+                                    textAlignVertical: TextAlignVertical.center,
+                                    textAlign: TextAlign.left,
+                                    decoration: InputDecoration(
+                                        hintText: 'Write a reply',
+                                        enabledBorder: InputBorder.none,
+                                        border: InputBorder.none)),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const Expanded(
+                      flex: 2,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.emoji_emotions_outlined),
+                          Icon(Icons.image_outlined),
+                          Icon(Icons.attach_file_rounded),
+                          Icon(Icons.send)
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ),
-            ]),
-          ),
+            )
+          ]),
         ));
   }
 }
@@ -160,7 +246,7 @@ class RPSCustomPainter extends CustomPainter {
     // Layer 1
 
     Paint paint_fill_0 = Paint()
-      ..color = const Color.fromARGB(255, 8, 138, 228)
+      ..color = Colors.blue
       ..style = PaintingStyle.fill
       ..strokeWidth = size.width * 0.00
       ..strokeCap = StrokeCap.butt

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:task2_msglobal/Screen_First/first_veiw.dart';
-import 'package:task2_msglobal/second_Screen/second_view.dart';
-
-import 'Screen_First/third_screen.dart';
+import 'package:task2_msglobal/Screens/Screen_First/first_veiw.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,10 +12,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const SecondView(),
-      theme: ThemeData(primarySwatch: Colors.blue),
+    return ScreenUtilInit(
+      designSize: const Size(360, 690),
+      minTextAdapt: true,
+      splitScreenMode: true,
+      builder: (_, child) => GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: FirstView(),
+        theme: ThemeData(primarySwatch: Colors.blue),
+      ),
     );
   }
 }

@@ -3,8 +3,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:task2_msglobal/Constant/colors.dart';
-import 'package:task2_msglobal/Screen_First/first_controller.dart';
-import 'package:task2_msglobal/second_Screen/second_view.dart';
+import 'package:task2_msglobal/Screens/Screen_First/first_controller.dart';
+import 'package:task2_msglobal/Screens/pageview.dart';
+import 'package:task2_msglobal/Screens/second_Screen/second_view.dart';
 
 class FirstView extends StatelessWidget {
   FirstView({super.key});
@@ -226,7 +227,7 @@ class FirstView extends StatelessWidget {
           ),
 
           GestureDetector(
-            onTap: () => Get.to(SecondView()),
+            onTap: () => Get.to(PageViewz()),
             child: Container(
               margin: EdgeInsets.symmetric(horizontal: 10),
               width: double.infinity,
